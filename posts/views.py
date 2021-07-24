@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Post
 from .forms import PostForm, SearchForm
 from comments.forms import CommentForm
+from .utils import ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
 
 
 def posts_list_view(request):
@@ -40,44 +41,18 @@ def post_detail_view(request, id):
                       )
 
 
-class PostCreateView(View):
-
-    def get(self, request):
-        form = PostForm()
-        return render(request, 'posts/post_create.html', context={'form': form})
-
-    def post(self, request):
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            return redirect(post)
-        return render(request, 'posts/post_create.html', context={'form': form})
+class PostCreateView(View, ObjectCreateMixin):
+    form = PostForm
+    template = 'posts/post_create.html'
 
 
-class PostUpdateView(View):
-
-    def get(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        bound_form = PostForm(instance=post)
-        return render(request, 'posts/post_update.html', context={'form': bound_form,
-                                                                  'post': post})
-
-    def post(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save()
-            return redirect(post)
-        return render(request, 'posts/post_update.html', context={'form': form, 'post': post})
+class PostUpdateView(View, ObjectUpdateMixin):
+    bound_form = PostForm
+    template = 'posts/post_update.html'
+    obj_class = Post
 
 
-class PostDeleteView(View):
-
-    def get(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        return render(request, 'posts/post_delete.html', context={'post': post})
-
-    def post(self, request, id):
-        post = get_object_or_404(Post, id=id)
-        post.delete()
-        return redirect(reverse('posts_list_url'))
+class PostDeleteView(View, ObjectDeleteMixin):
+    template = 'posts/post_delete.html'
+    obj_class = Post
+    redirect_template = 'posts_list_url'
