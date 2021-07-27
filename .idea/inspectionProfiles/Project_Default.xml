@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="django" />
+            <item index="1" class="java.lang.String" itemvalue="psycopg2-binary" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="psy.env.db.DBConnection.*" />
+          <option value="db_last.user.DBConnection.cursor" />
+          <option value="db_last.asd.DBConnection.cursor" />
+          <option value="exam_10_07.part_2.DBConnection.cursor" />
+          <option value="news.posts.models.Post.id" />
+          <option value="news.tags.models.Tag.id" />
+          <option value="news.posts.models.Post.objects" />
+          <option value="news.tags.models.Tag.objects" />
+          <option value="applications.news.models.Category.objects" />
+          <option value="applications.news.models.Article.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
