@@ -51,4 +51,4 @@ class RegistrationView(View):
 
 def logout_view(request):
     logout(request)
-    return redirect(reverse('posts_list_url'))
+    return redirect(reverse('login_url'))
